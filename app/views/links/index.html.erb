@@ -1,0 +1,30 @@
+<% content_for :title, "Homepage" %>
+<%= javascript_include_tag "index" %>
+
+<div class="search">
+  <form action="" @submit.prevent="getSearchResults()" accept-charset="UTF-8" method="post">
+    <input placeholder="Search" onclick="this.placeholder=''" v-model="searchParam">
+  </form>
+</div>
+  <div class="filter"><a @click="getPopularLinks()" :class="{ selected: this.pageType['popular'] }">Most Popular</a> - <a @click="getNewestLinks()" :class="{ selected: this.pageType['newest'] }">Newest</a></div>
+  <ul>
+    <li v-for="(link, index) in links" class="link">
+      <div class="item-left">
+        <div class="point" id="point">
+          <a class="btn btn-success" @click="givePointToLink(link.id, index)"><%= image_tag('up.png') %></a>
+          <span>{{ link.points_count }} p</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="url-base">{{ link.hostname }}</div>
+        <h1><a :href="link.url" target="_blank">{{ link.title }}</a></h1>
+        <div class="link-info">
+          <span class="author">{{ link.username }}</span> • <span class="time">{{ link.time_ago }} ago</span> • <a :href=" '/link/' + link.id" class="comment-count">{{ link.comments_count }} Comments</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+<div class="page-nav">
+  <a @click="nextPage()" class="next" :class="{ disabled: !next }">Next</a>
+  <a @click="previousPage()" class="previous" :class="{ disabled: !previous }">Previous</a>
+</div>

@@ -1,0 +1,15 @@
+<header>
+  <div class="header-left">
+    <a href="/"><%= image_tag get_site_setting.logo.url %></a>
+    <span class="slogan"><%= get_site_setting.slogan %></span>
+  </div>
+  <div class="header-right">
+    <% if current_user %>
+      <a href="/share-link" class="red-button">Share Link</a>
+      <a href="/logout" class="white-button">Log Out</a>
+    <% else %>
+      <a href="/register" class="red-button" >Register</a>
+      <a href="/login" class="white-button">Log In</a>
+    <% end %>
+  </div>
+</header>

@@ -1,0 +1,34 @@
+<% content_for :title, "Login" %>
+<%= javascript_include_tag "login" %>
+
+<div class="section-form">
+  <h1>Log In</h1>
+  <form action="" @submit.prevent="submitLogin" accept-charset="UTF-8" method="post" novalidate>
+    <table class="form-table">
+      <tr>
+        <td><span>Email:</span></td>
+        <td><input type="email" v-model="email" :class="validateEmail"></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td class="warning-td">
+          <span :class="validateEmail" class="warning-span">Please enter valid email.</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span>Password:</span></td>
+        <td><input type="password" v-model="password" :class="validatePassword"></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td class="warning-td">
+          <span :class="validatePassword" class="warning-span">Minimum length is 6.</span>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="/forgot-password" class="forgot">Forgot my password</a></td>
+        <td><button type="submit" :class="validateSubmit">Sign In</button></td>
+      </tr>
+    </table>
+  </form>
+</div>

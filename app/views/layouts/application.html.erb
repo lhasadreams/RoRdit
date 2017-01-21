@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield :title %> | <%= get_site_setting.title %></title>
+  <%= stylesheet_link_tag 'application', media: "all" %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+</head>
+<body>
+  <%= render "shared/modal" %>
+
+  <%= render "shared/header" %>
+
+  <div id="vue-app">
+    <modal v-if="showingModal" @close="showingModal = false">
+      <p slot="body">{{ modalMessage }}</p>
+    </modal>
+    <%= yield %>
+  </div>
+
+  <%= render "shared/footer" %>
+</body>
+</html>

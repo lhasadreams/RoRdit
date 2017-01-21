@@ -1,0 +1,34 @@
+<% content_for :title, "Share Link" %>
+<%= javascript_include_tag "share_link" %>
+
+<div class="section-form">
+  <h1>Share Link</h1>
+  <form action="" v-on:submit.prevent="submitLink()" accept-charset="UTF-8" method="post">
+    <table class="form-table">
+      <tr>
+        <td><span>Link:</span></td>
+        <td><input type="text" v-model="url" :class="validateURL" placeholder="http://"></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td class="warning-td">
+          <span :class="validateURL" :class="validateURL" class="warning-span">Please enter valid URL.</span>
+        </td>
+      </tr>
+      <tr>
+        <td><span>Title:</span></td>
+        <td><input type="text" v-model="title" :class="validateTitle"></td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td class="warning-td">
+          <span :class="validateTitle" class="warning-span">Minimum length is 5</span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button type="submit" :class="validateShareLink">Share</button></td>
+      </tr>
+    </table>
+  </form>
+</div>

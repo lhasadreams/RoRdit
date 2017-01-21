@@ -1,0 +1,18 @@
+<%= javascript_include_tag "show" %>
+<div class="item-detail">
+  <div class="item-left">
+    <div class="point">
+      <a class="btn btn-success" v-on:click="givePoint(link.id, 'link')"><%= image_tag('up.png') %></a>
+      <span>{{ link.points_count }} p</span>
+    </div>
+  </div>
+  <div class="item-right">
+    <span class="url-base">{{ link.hostname }}</span>
+    <h1><a :href="link.url">{{ link.title }}</a></h1>
+    <div class="link-info">
+      <span class="author">{{ link.username }}</span> • <span class="time">{{ link.time_ago }} ago</span> •
+      <a :href=" '/link/' + link.id" class="comment-count">{{ link.comments_count }} Comments</a>
+    </div>
+  </div>
+</div>
+<%= render "comments/comments" %>
