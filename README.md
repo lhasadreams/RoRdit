@@ -1,6 +1,6 @@
 # RoRdit [![Build Status](https://travis-ci.com/mertbulan/RoRdit.svg?token=xywiVTqoo2jXbFx9CPwW&branch=master)](https://travis-ci.com/mertbulan/RoRdit)
 
-RoRdit is a link aggreagation web application like Reddit and Hacker News. 
+RoRdit is a link aggregation web application like Reddit and Hacker News. 
 
 It uses number of technologies: [Ruby on Rails](https://github.com/rails/rails) for the back-end,
 [VueJS](https://github.com/vuejs/vue) for the front-end, [PostgreSQL](https://github.com/postgres/postgres) for database management, 
