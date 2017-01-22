@@ -89,6 +89,6 @@ puts "Finished to create 100 point for links"
 
 puts "Starting to calculate popularity of links"
 
-Link.calculate_popularity
+Link.calculate_last_200_popularity
 
 puts "Finished to calculate popularity of links"
