@@ -28,7 +28,7 @@ var myMixin = {
     computed: {
         validateURL: function () {
             return {
-                warning: !linkRe.test(this.url) && this.url.length > 0
+                warning: !linkRe.test(this.url.toLowerCase()) && this.url.length > 0
             }
         },
         validateTitle: function () {
