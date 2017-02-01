@@ -10,14 +10,14 @@
     <div class="comment-left">
       <div class="mini-point">
         <a @click="givePoint(comment.id, 'comment', index)"><%= image_tag('up.png') %></a>
-        <span>{{ comment.points_count }} p</span>
+        <span v-cloak>{{ comment.points_count }} p</span>
       </div>
     </div>
     <div class="comment-right">
       <div class="comment-info">
-        <span class="commenter">{{ comment.username }}</span> <span class="time">{{ comment.time_ago }} ago</span>
+        <span class="commenter" v-cloak>{{ comment.username }}</span> <span class="time" v-cloak>{{ comment.time_ago }} ago</span>
       </div>
-      <p class="comment-text">{{ comment.comment }}</p>
+      <p class="comment-text" v-cloak>{{ comment.comment }}</p>
     </div>
   </li>
 </ul>

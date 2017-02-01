@@ -12,14 +12,14 @@
       <div class="item-left">
         <div class="point" id="point">
           <a class="btn btn-success" @click="givePointToLink(link.id, index)"><%= image_tag('up.png') %></a>
-          <span>{{ link.points_count }} p</span>
+          <span v-cloak>{{ link.points_count }} p</span>
         </div>
       </div>
       <div class="item-right">
-        <div class="url-base">{{ link.hostname }}</div>
-        <h1><a :href="link.url" target="_blank">{{ link.title }}</a></h1>
+        <div class="url-base" v-cloak>{{ link.hostname }}</div>
+        <h1><a :href="link.url" target="_blank" v-cloak>{{ link.title }}</a></h1>
         <div class="link-info">
-          <span class="author">{{ link.username }}</span> • <span class="time">{{ link.time_ago }} ago</span> • <a :href=" '/link/' + link.id" class="comment-count">{{ link.comments_count }} Comments</a>
+          <span class="author" v-cloak>{{ link.username }}</span> • <span class="time" v-cloak>{{ link.time_ago }} ago</span> • <a :href=" '/link/' + link.id" class="comment-count" v-cloak>{{ link.comments_count }} Comments</a>
         </div>
       </div>
     </li>

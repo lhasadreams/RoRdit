@@ -14,7 +14,7 @@
 
   <div id="vue-app">
     <modal v-if="showingModal" @close="showingModal = false">
-      <p slot="body">{{ modalMessage }}</p>
+      <p slot="body" v-cloak>{{ modalMessage }}</p>
     </modal>
     <%= yield %>
   </div>
