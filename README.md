@@ -62,7 +62,7 @@ For that you have two options:
    
         1. First, we need to install elasticsearch: 
             
-            `$ brew install elastichsearch`
+            `$ brew install elasticsearch`
             
         2. Then, delete `bonsai-elasticsearch-rails` gem
             and add `elasticsearch-model` and `elasticsearch-rails` gems to Gemfile.
