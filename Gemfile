@@ -13,6 +13,7 @@ gem 'devise', ' ~> 3.2'
 gem 'bonsai-elasticsearch-rails'
 gem "paperclip", "~> 5.0.0"
 gem 'whenever', :require => false
+gem 'tzinfo-data'
 
 group :production do
   gem 'rails_12factor'
