@@ -1,0 +1,32 @@
+#!{{pkgPathFor "core/bash"}}/bin/bash
+exec 2>&1
+
+source {{pkg.svc_config_path}}/app_env.sh
+
+export PGPASSWORD={{bind.database.first.cfg.superuser_password}}
+
+hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d postgres -t -c "select usename from pg_user where usename = 'rordit';" | egrep .
+
+if [ $? -gt  0 ]; then
+  hab pkg exec core/postgresql createuser -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} rordit
+fi
+
+hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} -c "ALTER USER rordit WITH PASSWORD 'rordit'" -d postgres
+
+
+hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d postgres -t -c "select datname from pg_database where datname = 'rordit_production';" | egrep .
+
+if [ $? -gt 0 ]; then
+  hab pkg exec core/postgresql createdb rordit_production -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} -O rordit
+fi
+
+mkdir -p {{pkg.svc_var_path}}/tmp
+mkdir -p {{pkg.svc_var_path}}/log
+
+hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d rordit_production -t -c "select title from site_settings;" | egrep .
+
+if [ $? -gt 0 ]; then
+  rordit-rake db:setup
+fi
+
+
