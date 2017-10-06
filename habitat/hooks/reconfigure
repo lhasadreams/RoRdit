@@ -1,0 +1,5 @@
+#!{{pkgPathFor "core/bash"}}/bin/bash
+exec 2>&1
+
+source {{pkg.svc_config_path}}/app_env.sh
+rordit-rake settings:update

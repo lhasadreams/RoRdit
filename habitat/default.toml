@@ -1,1 +1,4 @@
 secret_key_base="fartmachine"
+
+site_title="Habdit"
+site_slogan="Welcome to Chef Summit 2017!"

@@ -5,28 +5,35 @@ source {{pkg.svc_config_path}}/app_env.sh
 
 export PGPASSWORD={{bind.database.first.cfg.superuser_password}}
 
+# create a user in postgresql for the web app if one doesn't exist
 hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d postgres -t -c "select usename from pg_user where usename = 'rordit';" | egrep .
 
 if [ $? -gt  0 ]; then
   hab pkg exec core/postgresql createuser -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} rordit
 fi
 
+# always be updating the password for the app DB user
 hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} -c "ALTER USER rordit WITH PASSWORD 'rordit'" -d postgres
 
 
+# create a database for the application if one doesn't exist
 hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d postgres -t -c "select datname from pg_database where datname = 'rordit_production';" | egrep .
 
 if [ $? -gt 0 ]; then
   hab pkg exec core/postgresql createdb rordit_production -h {{bind.database.first.sys.ip}} -U {{bind.database.first.cfg.superuser_name}} -O rordit
 fi
 
+# create the directories to which the app expects to be able to write
 mkdir -p {{pkg.svc_var_path}}/tmp
 mkdir -p {{pkg.svc_var_path}}/log
 
+# migrate the database and set basic system settings
 hab pkg exec core/postgresql psql -h {{bind.database.first.sys.ip}} -U admin -d rordit_production -t -c "select title from site_settings;" | egrep .
 
 if [ $? -gt 0 ]; then
-  rordit-rake db:setup
+  rordit-rake db:migrate settings:create
+else
+  rordit-rake db:migrate
 fi
 
 
