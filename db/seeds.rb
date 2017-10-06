@@ -5,7 +5,7 @@ require 'faker'
 puts "Starting to create site settings"
 puts "-------------------------------"
 
-SiteSetting.create(title: "RoRdit", slogan: "Slogan is here.")
+SiteSetting.create(title: "Habdit", slogan: "Welcome to Chef Summit London 2017!")
 
 puts "-------------------------------"
 puts "Finished to create stite settings"
