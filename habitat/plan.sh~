@@ -1,5 +1,5 @@
 pkg_name=rordit
-pkg_origin=eeyun
+pkg_origin=core
 pkg_scaffolding="core/scaffolding-ruby"
 pkg_version="0.1.0"
 
